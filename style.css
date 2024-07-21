@@ -49,13 +49,13 @@
 .card .diamonds
 {
 	background-position-y: 100px;
-	color: red;
+	
 }
 
 .card .hearts
 {
 	background-position-x: 90px;
-	color: red;
+	
 }
 
 .card .clubs
@@ -64,3 +64,12 @@
 	background-position-y:100px;
 	
 }
+
+.card .red
+{
+	font-size:15pt;
+	font-family: sans-serif;
+	color: red;
+	
+}
+

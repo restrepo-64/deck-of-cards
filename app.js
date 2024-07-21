@@ -3,6 +3,7 @@ var suits = ["hearts", "spades", "diamonds", "clubs"];
 var values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 
 var deck = new Array();
+var hand = new Array();
 
 //make the deck
 
@@ -41,30 +42,20 @@ function shuffle() {
     }
     
     renderDeck();
+    renderHand();
 }
 
 
 //draw card function
 function draw() {
 
+    
     let cardDrawn = deck.pop();
+    hand.push(cardDrawn);
 
-
-    let card = document.createElement("div");
-        let value = document.createElement("div");
-        let suit = document.createElement("div");
-
-        card.className = "card";
-        value.className = "value";
-        suit.className = "suit " + cardDrawn.Suit;
-
-        value.innerHTML = cardDrawn.Value;
-        card.appendChild(value);
-        card.appendChild(suit);
-
-        document.getElementById("cardDrawn").appendChild(card);
 
         renderDeck();
+        renderHand();
 
 }
 
@@ -88,12 +79,42 @@ function renderDeck() {
         card.appendChild(value);
         card.appendChild(suit);
 
+        if(deck[i].Suit== "hearts" || deck[i].Suit == "diamonds") {
+            value.className = "red";
+        }
+
         document.getElementById("deck").appendChild(card);
+    }
+}
+
+function renderHand() {
+
+    document.getElementById("hand").innerHTML = "";
+
+    for(let i = 0; i < hand.length; i++) {
+        let card = document.createElement("div");
+        let value = document.createElement("div");
+        let suit = document.createElement("div");
+
+        card.className = "card";
+        value.className = "value";
+        suit.className = "suit " + hand[i].Suit;
+
+        value.innerHTML = hand[i].Value;
+        card.appendChild(value);
+        card.appendChild(suit);
+
+        if(hand[i].Suit== "hearts" || hand[i].Suit == "diamonds") {
+            value.className = "red";
+        }
+
+        document.getElementById("hand").appendChild(card);
     }
 }
 
 function load() {
     deck = getDeck();
+    hand = [];
     shuffle();
     renderDeck();
 }
